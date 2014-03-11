@@ -1,0 +1,214 @@
+<%= form_for ["admin", @company], :html => { :class => 'form-horizontal' } do |f| %>
+
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :business_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :business_id, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :address, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :address, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :zip, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :zip, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :city, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :city, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :contact_person, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact_person, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :contact_email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact_email, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :contact_phone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact_phone, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :contact_fax, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :contact_fax, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :url, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :url, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :mob_url, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :mob_url, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :logo_link, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :logo_link, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :url, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :company_logo, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :company_banner, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :company_banner, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :default_reservation_time, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :default_reservation_time, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :schedule_time_interval, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :schedule_time_interval, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :num_tab, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :num_tab, :class => 'input-xlarge' %>
+      </div>
+    </div>  
+    
+    <div class="control-group">
+      <%= f.label :num_tab, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :morning_start_time, options_for_select((1..23).to_a, '') %> &nbsp; <%= f.select :evening_end_time, options_for_select((1..45).to_a, '') %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :evening_end_time, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :evening_end_time, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :send_email, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[send_email]', 1, @company.send_email %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :num_tab, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.radio_button :mail_format, 'html' %>Html &nbsp; 
+        <%= f.radio_button :mail_format, 'text' %>Text
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :display_receipt, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[display_receipt]', 1, @company.display_receipt %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :send_sms, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[send_sms]', 1, @company.send_sms %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :appConfirm, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[appConfirm]', 1, @company.appConfirm %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :display_checkin, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[display_checkin]', 1, @company.display_checkin %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :close, :class => 'control-label' %>
+      <div class="controls">
+        <%= check_box_tag 'company[close]', 1, @company.close %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :reason_text, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :reason_text, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :num_tab, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.radio_button :massmail, '1' %>Enable &nbsp; <%= f.radio_button :massmail, '0' %>Disable
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :num_tab, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.radio_button :massmail_internal, '1' %>Enable &nbsp; <%= f.radio_button :massmail_internal, '0' %>Disable
+      </div>
+    </div>
+
+    
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%#= link_to 'Cancel', admin_company_url, :class => 'btn' %>
+    </div>
+
+<% end %>
+
