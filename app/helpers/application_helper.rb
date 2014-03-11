@@ -34,6 +34,10 @@ module ApplicationHelper
   
   def get_user_roles
     Role.all.collect {|r| [r.role_type, r.id]} 
-  end      
+  end
+  
+  def get_time(start, ensd)
+    (1..23).collect{|ele| [ ((ele < 10)? '0'+ele.to_s : ele.to_s), ((ele < 10)? '0'+ele.to_s : ele.to_s) ]}
+  end 
     
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310120014) do
+ActiveRecord::Schema.define(version: 20140311085824) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20140310120014) do
     t.string   "forenoon_end"
     t.string   "afternoon_start"
     t.string   "afternoon_end"
-    t.integer  "morning_start_time"
-    t.integer  "evening_end_time"
+    t.string   "morning_start_time"
+    t.string   "evening_end_time"
     t.string   "close",                       limit: 1
     t.string   "appConfirm",                  limit: 1
     t.string   "reason_text"

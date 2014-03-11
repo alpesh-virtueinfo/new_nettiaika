@@ -28,7 +28,7 @@ en:
   mobile: "Mobile"
   change_password: "Change Password"
   fax: "Fax"
-
+  name: 'Name'
   general:
     company_admin: "Company Admins"
     admin_setup: "Admin Setup"

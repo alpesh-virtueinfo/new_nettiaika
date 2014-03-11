@@ -1,13 +1,13 @@
+
 <%= form_for :company, :url => { :action => 'index' }, :html => { :id => "index_form" }, :method => "get", :remote => true do |f| %>
 <table class="table table-striped">
  <thead>
   <tr>
   	<th width="5%"><%= check_box_tag "check_all", "" %><%= t("general.all") %></th>
-    <th width="20%"><%#=raw sortable "name", t("name") %></th>
-    <th width="20%"><%#= sortable "email", t("email") %></th>
-    <th width="15%"><%= t("role") %></th>
-    <th width="15%"><%#= sortable "created_at", t("general.date")%></th>
-    <th width="10%"><%#= sortable "is_active", t("general.active") %></th>
+    <th width="20%"><%= sortable "name", t("name") %></th>
+    <th width="20%"><%= sortable "contact_person", t("contact_person") %></th>
+    <th width="15%"><%= sortable "url", t("general.url")%></th>
+    <th width="15%"><%= sortable "mob_url", t("general.mob_url")%></th>
     <th width="15%"><%= t("general.actions") %></th>
   </tr>
  </thead>
@@ -16,12 +16,11 @@
     <% if @companies.size > 0 %>
       <% @companies.each do |company| %>
         <tr>
-        	<th><%= check_box_tag "rec["+company.id.to_s+"]", "" %></th>
+          <th><%= check_box_tag "rec["+company.id.to_s+"]", "" %></th>
           <td><%= company.name %></td>
-          <td><%#= company.email %></td>
-          <td><%#= company.role.role_type %></td>
-          <td><%= company.created_at.to_s(:pretty_view) if company.created_at %></td>
-          <td><%#= company.is_active ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
+          <td><%= company.contact_person %></td>
+          <td><%= company.url %></td>
+          <td><%= company.mob_url %></td>
           <td>
 			      <%= link_to t('general.edit'),
 			                  edit_admin_company_path(company), :class => 'btn btn-mini' %>
