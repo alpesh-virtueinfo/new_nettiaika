@@ -3,7 +3,7 @@ NewNettiaika::Application.routes.draw do
   #get '/chat', to: RealtimeChatController
 
   namespace :admin do
-    resources :users, :settings, :footer_pages, :contacts, :languages, :email_templates, :companies
+    resources :users, :settings, :footer_pages, :contacts, :languages, :email_templates, :companies, :company_admins
   end
 
   resources :user_sessions

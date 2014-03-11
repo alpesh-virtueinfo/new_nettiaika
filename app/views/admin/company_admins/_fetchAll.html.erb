@@ -1,0 +1,54 @@
+<%= form_for :company_admin, :url => { :action => 'index' }, :html => { :id => "index_form" }, :method => "get", :remote => true do |f| %>
+<table class="table table-striped">
+ <thead>
+  <tr>
+  	<th width="5%"><%= check_box_tag "check_all", "" %><%= t("general.all") %></th>
+    <th width="20%"><%=t("first_name") %></th>
+    <th width="20%"><%=t("last_name") %></th>
+    <th width="15%"><%= t("mobile") %></th>
+    <th width="15%"><%= t("email")%></th>
+  </tr>
+ </thead>
+
+  <tbody>
+    <% if @company_admins.size > 0 %>
+      <% @company_admins.each do |company_admin| %>
+        <tr>
+        	<th><%= check_box_tag "rec["+company_admin.id.to_s+"]", "" %></th>
+          <td><%= company_admin.first_name %></td>
+          <td><%= company_admin.last_name %></td>
+          <td><%= company_admin.mobile %></td>
+          <td><%= company_admin.email %></td>
+          <td>
+			      <%= link_to t('general.edit'),
+			                  edit_admin_company_admin_path(company_admin), :class => 'btn btn-mini' %>
+			      <%= link_to t('general.destroy'),
+			                  admin_company_admin_path(company_admin),
+			                  :method => :delete,
+			                  :data => { :confirm => t('general.confirm') },
+			                  :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="fr">
+	<table>
+		<tr>
+            <td><%= render 'layouts/common_pager' %></td>
+			<td>
+				<%= select_tag "set_pager_number", options_for_select(get_pager_numbers, session[:set_pager_number]),
+																	:data => { :remote => true, :url => url_for(:action => "index") },
+																	:class => ""  %>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<%= will_paginate @companies %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

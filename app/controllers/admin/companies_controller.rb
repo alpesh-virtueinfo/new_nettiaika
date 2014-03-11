@@ -13,11 +13,12 @@ class Admin::CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @company.save
-    redirect_to companies_path
+    redirect_to admin_companies_path
     #render :text => params.inspect and return false
   end
 
   def show
+
   end
 
   def edit

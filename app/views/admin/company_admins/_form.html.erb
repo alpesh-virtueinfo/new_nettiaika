@@ -1,0 +1,64 @@
+<%= form_for ["admin", @company_admin], :html => { :class => 'form-horizontal' } do |f| %>
+
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= collection_select(:company_admin, :company_id, @companies, :id, :name) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :username, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :username, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :last_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :phone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :mobile, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :mobile, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :fax, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :fax, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+
+<% end %>
+

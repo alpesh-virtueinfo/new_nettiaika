@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h4>
+    <%= t("general.contacts") %>
+  </h4>
+</div>
+
+<div class="control-group">
+  <strong><%= t("username:") %></strong>
+  <%= @company_admin.username %>
+</div>
+
+<div class="control-group">
+  <strong><%= t("first_name:") %></strong>
+  <%= @company_admin.first_name %>
+</div>
+
+<div class="control-group">
+  <strong><%= t("last_name:") %></strong>
+  <%= @company_admin.last_name %>
+</div>
+
+<div class="control-group">
+  <strong><%= t("mobile:") %></strong>
+  <%= @company_admin.mobile %>
+</div>
+
+<div class="control-group">
+  <strong><%= t("email:") %></strong>
+  <%= @company_admin.email %>
+</div>
+
+<div class="control-group">
+  <strong><%= t("fax:") %></strong>
+  <%= @company_admin.fax%>
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Back', admin_company_admins_path, :class => "btn btn-primary" %>
+</div>

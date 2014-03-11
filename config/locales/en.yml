@@ -23,7 +23,14 @@ en:
   role: "Role"
   username: "Username"
   email: "Email"
+  first_name: "First Name"
+  last_name: "Last Name"
+  mobile: "Mobile"
+  change_password: "Change Password"
+  fax: "Fax"
+
   general:
+    company_admin: "Company Admins"
     admin_setup: "Admin Setup"
     welcome_user: "Welcome %{username}"
     content: "Content"
