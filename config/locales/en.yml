@@ -23,6 +23,8 @@ en:
   role: "Role"
   username: "Username"
   email: "Email"
+  name: 'Name'
+  name: 'Name'
   general:
     admin_setup: "Admin Setup"
     welcome_user: "Welcome %{username}"

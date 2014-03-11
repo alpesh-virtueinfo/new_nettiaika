@@ -1,4 +1,4 @@
-<%= form_for ["admin", @company], :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for ["admin", @company], :html => { :class => 'form-horizontal', :name => 'new_company'} do |f| %>
 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %>
@@ -108,7 +108,7 @@
     <div class="control-group">
       <%= f.label :schedule_time_interval, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :schedule_time_interval, :class => 'input-xlarge' %>
+        <%= f.text_field :schedule_time_interval, :onblur => "makeCombo();", :class => 'input-xlarge' %>
       </div>
     </div>
 
@@ -120,16 +120,19 @@
     </div>  
     
     <div class="control-group">
-      <%= f.label :num_tab, :class => 'control-label' %>
+      <%= f.label :morning_start_time, :class => 'control-label' %>
       <div class="controls">
-        <%= f.select :morning_start_time, options_for_select((1..23).to_a, '') %> &nbsp; <%= f.select :evening_end_time, options_for_select((1..45).to_a, '') %>
+        <%#= f.select :morning_start_time, options_for_select((1..23).to_a, ''), :class => 'input-xlarge' %> &nbsp; <%#= f.select :evening_end_time, options_for_select((1..45).to_a, ''), :class => 'input-xlarge' %>
+        <%= select_tag "morning_stime", options_for_select(get_time(1, 23), @company.morning_start_time.present? ? @company.morning_start_time.split(':')[0]: '08'), :class => "input-xlarge" %>
+        <%= select_tag "morning_etime", options_for_select(get_time(1, 45), @company.morning_start_time.present? ? @company.morning_start_time.split(':')[1]: '00'), :class => 'input-xlarge' %>
       </div>
     </div>
     
     <div class="control-group">
       <%= f.label :evening_end_time, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :evening_end_time, :class => 'input-xlarge' %>
+        <%= select_tag "evening_stime", options_for_select(get_time(1, 23), @company.evening_end_time.present? ? @company.evening_end_time.split(':')[0]: '08'), :class => "input-xlarge" %>
+        <%= select_tag "evening_etime", options_for_select(get_time(1, 45), @company.evening_end_time.present? ? @company.evening_end_time.split(':')[1]: '00'), :class => 'input-xlarge' %>
       </div>
     </div>
     
@@ -191,14 +194,14 @@
     </div>
     
     <div class="control-group">
-      <%= f.label :num_tab, :class => 'control-label' %>
+      <%= f.label :massmail, :class => 'control-label' %>
       <div class="controls">
         <%= f.radio_button :massmail, '1' %>Enable &nbsp; <%= f.radio_button :massmail, '0' %>Disable
       </div>
     </div>
     
     <div class="control-group">
-      <%= f.label :num_tab, :class => 'control-label' %>
+      <%= f.label :massmail_internal, :class => 'control-label' %>
       <div class="controls">
         <%= f.radio_button :massmail_internal, '1' %>Enable &nbsp; <%= f.radio_button :massmail_internal, '0' %>Disable
       </div>
@@ -207,7 +210,7 @@
     
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%#= link_to 'Cancel', admin_company_url, :class => 'btn' %>
+      <%= link_to 'Cancel', admin_companies_path, :class => 'btn' %>
     </div>
 
 <% end %>
