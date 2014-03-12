@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311085824) do
+ActiveRecord::Schema.define(version: 20140312053355) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(version: 20140311085824) do
     t.string   "mobile"
     t.string   "fax"
     t.integer  "sort_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "company_languages", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "language_id"
+    t.boolean  "activate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

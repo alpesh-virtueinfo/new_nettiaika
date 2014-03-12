@@ -4,6 +4,11 @@ NewNettiaika::Application.routes.draw do
 
   namespace :admin do
     resources :users, :settings, :footer_pages, :contacts, :languages, :email_templates, :companies, :company_admins
+    get '/company/languages' => 'companies#language_list'
+    get '/company/languages' => 'companies#language_list' , as: :language_list
+    get '/company/:id/edit_language' => 'companies#edit_language', as: :edit_language
+    match '/company/:id/update_language' => 'companies#update_language', as: :update_language , via: [:put, :post]
+
   end
 
   resources :user_sessions

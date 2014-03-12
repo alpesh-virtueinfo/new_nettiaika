@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :company_admins
+  has_many :company_languages
   validates :name, :url, :contact_person, :presence => true
   
   include SearchHandler
