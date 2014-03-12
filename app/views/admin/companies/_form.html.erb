@@ -122,7 +122,6 @@
     <div class="control-group">
       <%= f.label :morning_start_time, :class => 'control-label' %>
       <div class="controls">
-        <%#= f.select :morning_start_time, options_for_select((1..23).to_a, ''), :class => 'input-xlarge' %> &nbsp; <%#= f.select :evening_end_time, options_for_select((1..45).to_a, ''), :class => 'input-xlarge' %>
         <%= select_tag "morning_stime", options_for_select(get_time(1, 23), @company.morning_start_time.present? ? @company.morning_start_time.split(':')[0]: '08'), :class => "input-xlarge" %>
         <%= select_tag "morning_etime", options_for_select(get_time(1, 45), @company.morning_start_time.present? ? @company.morning_start_time.split(':')[1]: '00'), :class => 'input-xlarge' %>
       </div>

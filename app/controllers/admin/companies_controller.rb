@@ -1,7 +1,8 @@
 class Admin::CompaniesController < ApplicationController
-  before_filter :get_company_from_params, :only => [:show]
-    helper_method :sort_column, :sort_direction
+  before_filter :get_company_from_params, :only => [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
   
+  # GET /companise list action
   def index
     @companies = Company.all.
         search(session[:search_params]).
@@ -10,10 +11,12 @@ class Admin::CompaniesController < ApplicationController
     @params_arr = ['name']
   end
 
+  # GET /companise/1/edit
   def new
     @company = Company.new
   end
 
+  # POST /companise
   def create
     @company = Company.new(company_params)
     respond_to do |format|
@@ -22,21 +25,21 @@ class Admin::CompaniesController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'new' }
-        flash[:error] = "Name / Url / Contact person required"
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
   end
-
+  
+  # GET /companise/1
   def show
   end
 
+  # GET /companise/1/edit
   def edit
-    @company = Company.find(params[:id])
   end
-
+  
+  # PATCH/PUT /companise/1
   def update
-    @company = Company.find(params[:id])
     respond_to do |format|
       if @company.update_attributes(company_params)
         format.html { redirect_to admin_companies_url, notice: t("general.successfully_updated") }
@@ -48,18 +51,18 @@ class Admin::CompaniesController < ApplicationController
     end
   end
   
+  # DELETE /companise/1
   def destroy
-    @o_single.destroy
+    @company.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: t("general.successfully_destroyed") }
-      format.json { head :no_content }
+      format.html { redirect_to admin_companies_url, notice: t("general.successfully_destroyed") }
     end
   end
   
   private
   
   def get_company_from_params
-    @comapny  = Company.find(params[:id])
+    @company  = Company.find(params[:id])
   end
   
   def company_params
