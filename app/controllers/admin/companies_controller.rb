@@ -69,19 +69,29 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def update_language
-    default_language = Language.find_by_code('en')
-    company_languages = @company.company_languages.editable_languages(default_language.id)
-    company_languages.update_all activate: false
-    if params[:company_language].present?
-      params[:company_language].each do |language_id|
-        if !(@company.company_languages.pluck(:language_id).include?(language_id.to_i))
-          CompanyLanguage.create({company_id: @company.id, language_id: language_id, activate: true})
-        else
-          @company.company_languages.find_by_language_id(language_id).update_attribute('activate', true)
+    respond_to do |format|
+      default_language = Language.find_by_code('en')
+      company_languages = @company.company_languages.editable_languages(default_language.id)
+      company_languages.update_all activate: false
+      if params[:company_language].present?
+        params[:company_language].each do |language_id|
+          if !(@company.company_languages.pluck(:language_id).include?(language_id.to_i))
+            CompanyLanguage.create({company_id: @company.id, language_id: language_id, activate: true})
+            format.html { redirect_to admin_companies_url, notice: t("general.successfully_created") }
+            format.json { head :no_content }
+          else
+            company_language  = @company.company_languages.find_by_language_id(language_id)
+            if company_language.update_attribute('activate', true)
+              format.html { redirect_to admin_language_list_path, notice: t("general.successfully_updated") }
+              format.json { head :no_content }
+            else
+              format.html { render action: 'edit_language' }
+              format.json { render json: company_language.errors, status: :unprocessable_entity }
+            end
+          end
         end
       end
     end
-    redirect_to admin_language_list_path
   end
 
 

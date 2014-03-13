@@ -12,8 +12,16 @@ class Admin::CompanyAdminsController < ApplicationController
 
   def create
     @company_admin = CompanyAdmin.new(company_admin_params)
-    @company_admin.save
-    redirect_to admin_company_admins_path
+    @companies = Company.all
+    respond_to do |format|
+      if @company_admin.save
+        format.html { redirect_to admin_company_admins_path, notice: t("general.successfully_created") }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @company_admin.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 
@@ -25,13 +33,25 @@ class Admin::CompanyAdminsController < ApplicationController
   end
 
   def update
-    @company_admin.update_attributes(company_admin_params)
-    redirect_to admin_company_admins_path
+    @companies = Company.all
+    #render :text => params.inspect and return false
+    respond_to do |format|
+      if @company_admin.update_attributes(company_admin_params)
+        format.html { redirect_to admin_company_admins_path, notice: t("general.successfully_updated") }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @company_admin.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def destroy
     @company_admin.destroy
-    redirect_to admin_company_admins_path
+    respond_to do |format|
+      format.html { redirect_to admin_company_admins_path, notice: t("general.successfully_destroyed") }
+    end
   end
 
   private
@@ -41,7 +61,9 @@ class Admin::CompanyAdminsController < ApplicationController
   end
 
   def company_admin_params
-    params.require(:company_admin).permit(:company_id, :username, :password, :first_name, :last_name, :email, :phone, :mobile, :fax, :sort_order)
+    #(:company_id, :username, :password, :first_name, :last_name, :email, :phone, :mobile, :fax, :sort_order,:password_confirmation)
+    params.require(:company_admin).permit!
   end
+
 
 end
