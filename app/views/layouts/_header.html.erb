@@ -8,6 +8,7 @@
           	<% if is_admin? %>
           		<li><%= link_to t("general.users"), admin_users_path  %></li>
           		<li><%= link_to t("general.company"), admin_companies_path %></li>
+          		<li><%= link_to t("general.payment_type"), admin_payment_types_path %></li>
           	<% end %>
           <% end %>	
         </ul>

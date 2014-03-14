@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_method: MyString
+  payment_class: MyString
+  payment_receiver: MyString
+  client_number: MyString
+  exact_charge: false
+  is_case: false
+  sort_order: 1
+  status: MyString
+
+two:
+  payment_method: MyString
+  payment_class: MyString
+  payment_receiver: MyString
+  client_number: MyString
+  exact_charge: false
+  is_case: false
+  sort_order: 1
+  status: MyString

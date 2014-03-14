@@ -151,6 +151,20 @@ ActiveRecord::Schema.define(version: 20140312053355) do
     t.datetime "updated_at"
   end
 
+  create_table "payment_types", force: true do |t|
+    t.integer  "company_id"
+    t.string   "payment_method"
+    t.string   "payment_class"
+    t.string   "payment_receiver"
+    t.string   "client_number"
+    t.boolean  "exact_charge",               default: false
+    t.boolean  "is_case"
+    t.integer  "sort_order"
+    t.string   "status",           limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "role_type"
     t.datetime "created_at"

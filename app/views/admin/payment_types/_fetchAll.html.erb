@@ -1,0 +1,55 @@
+<%= form_for :payment_type, :url => { :action => 'index' }, :html => { :id => "index_form" }, :method => "get", :remote => true do |f| %>
+<table class="table table-striped">
+ <thead>
+  <tr>
+  	<th width="5%"><%= check_box_tag "check_all", "" %><%= t("general.all") %></th>
+  	<th width="20%"><%= sortable "name", t("company_name") %></th>
+    <th width="20%"><%= sortable "payment_method", t("payment_type") %></th>
+    <th width="20%"><%= t("exact_charge") %></th>
+    <th width="15%"><%= t("is_case")%></th>
+    <th width="15%"><%= t("general.actions") %></th>
+  </tr>
+ </thead>
+
+  <tbody>
+    <% if @payment_types.size > 0 %>
+      <% @payment_types.each do |payment_type| %>
+        <tr>
+          <th><%= check_box_tag "rec["+payment_type.id.to_s+"]", "" %></th>
+          <td><%= payment_type.company.name %></td>
+          <td><%= payment_type.payment_method %></td>
+          <td><%= payment_type.exact_charge %></td>
+          <td><%= payment_type.is_case %></td>
+          <td>
+		      <%= link_to t('general.edit'),
+		                  edit_admin_payment_type_path(payment_type), :class => 'btn btn-mini' %>
+		      <%= link_to t('general.destroy'),
+		                  admin_payment_type_path(payment_type),
+		                  :method => :delete,
+		                  :data => { :confirm => t('general.confirm') },
+		                  :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="fr">
+	<table>
+		<tr>
+            <td><%= render 'layouts/common_pager' %></td>
+			<td>
+				<%= select_tag "set_pager_number", options_for_select(get_pager_numbers, session[:set_pager_number]),
+																	:data => { :remote => true, :url => url_for(:action => "index") },
+																	:class => ""  %>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<%= will_paginate @payment_types %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>
