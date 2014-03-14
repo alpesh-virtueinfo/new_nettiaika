@@ -1,8 +1,19 @@
 class Admin::CompanyAdminsController < ApplicationController
   before_filter :get_company_admin_from_params, :only => [:edit, :show, :update, :destroy]
+  helper_method :sort_column, :sort_direction
   def index
-    @company_admins = CompanyAdmin.all.paginate(:per_page => session[:set_pager_number], :page => params[:page])
-    @params_arr = ['username', 'first_name']
+    session[:search_params] = params[:company_admin] ? params[:company_admin] : nil
+    session[:set_pager_number] = params[:set_pager_number] if params[:set_pager_number]
+
+    if session[:set_pager_number].nil?
+      session[:set_pager_number] = PER_PAGE
+    end
+   
+    @company_admins = CompanyAdmin.all
+      .search(session[:search_params])
+      .order(sort_column + " " + sort_direction)
+      .paginate(:per_page => session[:set_pager_number], :page => params[:page])
+    @params_arr = ['first_name', 'last_name']
   end
 
   def new
@@ -64,6 +75,13 @@ class Admin::CompanyAdminsController < ApplicationController
     #(:company_id, :username, :password, :first_name, :last_name, :email, :phone, :mobile, :fax, :sort_order,:password_confirmation)
     params.require(:company_admin).permit!
   end
+ 
+  def sort_column
+    CompanyAdmin.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
 
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
 
 end

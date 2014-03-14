@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312053355) do
+ActiveRecord::Schema.define(version: 20140313054127) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140312053355) do
   create_table "company_admins", force: true do |t|
     t.integer  "company_id"
     t.string   "username"
-    t.string   "password"
+    t.string   "crypted_password"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20140312053355) do
     t.integer  "sort_order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_salt"
+    t.string   "persistence_token"
   end
 
   create_table "company_languages", force: true do |t|
