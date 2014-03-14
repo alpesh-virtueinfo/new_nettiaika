@@ -10,8 +10,10 @@ class Admin::PaymentTypesController < ApplicationController
     if session[:set_pager_number].nil?
       session[:set_pager_number] = PER_PAGE
     end
+    
     @payment_types = PaymentType.all
       .search(session[:search_params])
+      .order(sort_column + " " + sort_direction)
       .paginate(:per_page => session[:set_pager_number], :page => params[:page])
     @params_arr = ['payment_method']
   end
@@ -69,15 +71,12 @@ class Admin::PaymentTypesController < ApplicationController
   end
 
   def payment_params
-    #(:payment_method, :payment_class, :payment_receiver, :client_number, :exact_charge, :is_case, :sort_order, :status)
-    unless params[:payment_type][:exact_charge].present?
-      params[:payment_type][:exact_charge] = 0
-    end  
+    params[:payment_type][:exact_charge] = params[:payment_type][:exact_charge] == '0' ? 1 : 0
     params.require(:payment_type).permit!
   end
   
   def sort_column
-    Company.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    PaymentType.column_names.include?(params[:sort]) ? params[:sort] : "id"  
   end
   
   def sort_direction

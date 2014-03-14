@@ -3,11 +3,11 @@
  <thead>
   <tr>
   	<th width="5%"><%= check_box_tag "check_all", "" %><%= t("general.all") %></th>
-  	<th width="20%"><%= sortable "name", t("company_name") %></th>
+  	<th width="20%"><%= sortable "company_id", t("company_name") %></th>
     <th width="20%"><%= sortable "payment_method", t("payment_type") %></th>
     <th width="20%"><%= t("exact_charge") %></th>
     <th width="15%"><%= t("is_case")%></th>
-    <th width="15%"><%= t("general.actions") %></th>
+    <th width="15%"><%= t("actions") %></th>
   </tr>
  </thead>
 
@@ -18,8 +18,8 @@
           <th><%= check_box_tag "rec["+payment_type.id.to_s+"]", "" %></th>
           <td><%= payment_type.company.name %></td>
           <td><%= payment_type.payment_method %></td>
-          <td><%= payment_type.exact_charge %></td>
-          <td><%= payment_type.is_case %></td>
+          <td><%= payment_type.exact_charge == true ? 'Yes' : 'No' %></td>
+          <td><%= payment_type.is_case == true ? 'Yes' : 'No' %></td>
           <td>
 		      <%= link_to t('general.edit'),
 		                  edit_admin_payment_type_path(payment_type), :class => 'btn btn-mini' %>

@@ -3,10 +3,12 @@
  <thead>
   <tr>
   	<th width="5%"><%= check_box_tag "check_all", "" %><%= t("general.all") %></th>
-    <th width="20%"><%=t("first_name") %></th>
-    <th width="20%"><%=t("last_name") %></th>
+  	<th width="20%"><%= sortable "company_id", t("company_name") %></th>
+    <th width="15%"><%= sortable "first_name", t("first_name") %></th>
+    <th width="15%"><%= sortable "last_name", t("last_name") %></th>
     <th width="15%"><%= t("mobile") %></th>
     <th width="15%"><%= t("email")%></th>
+    <th width="10%"><%= t("actions")%></th>
   </tr>
  </thead>
 
@@ -14,7 +16,8 @@
     <% if @company_admins.size > 0 %>
       <% @company_admins.each do |company_admin| %>
         <tr>
-        	<th><%= check_box_tag "rec["+company_admin.id.to_s+"]", "" %></th>
+          <th><%= check_box_tag "rec["+company_admin.id.to_s+"]", "" %></th>
+          <td><%= company_admin.company.name %></td>
           <td><%= company_admin.first_name %></td>
           <td><%= company_admin.last_name %></td>
           <td><%= company_admin.mobile %></td>
