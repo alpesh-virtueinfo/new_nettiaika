@@ -97,10 +97,12 @@ class Admin::CompaniesController < ApplicationController
             end
           end
         end
+      else
+        format.html { redirect_to admin_language_list_path, notice: t("general.successfully_updated") }
+        format.json { head :no_content }
       end
     end
   end
-
 
   private
   

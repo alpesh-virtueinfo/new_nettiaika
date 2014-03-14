@@ -35,7 +35,6 @@ class Admin::CompanyAdminsController < ApplicationController
     end
   end
 
-
   def show
   end
 
@@ -45,7 +44,6 @@ class Admin::CompanyAdminsController < ApplicationController
 
   def update
     @companies = Company.all
-    #render :text => params.inspect and return false
     respond_to do |format|
       if @company_admin.update_attributes(company_admin_params)
         format.html { redirect_to admin_company_admins_path, notice: t("general.successfully_updated") }
@@ -72,7 +70,6 @@ class Admin::CompanyAdminsController < ApplicationController
   end
 
   def company_admin_params
-    #(:company_id, :username, :password, :first_name, :last_name, :email, :phone, :mobile, :fax, :sort_order,:password_confirmation)
     params.require(:company_admin).permit!
   end
  
