@@ -68,6 +68,7 @@ class Admin::CompaniesController < ApplicationController
   def language_list
     @companies = Company.all
     @languages = Language.all
+    @params_arr = ['name']
   end
 
   def edit_language

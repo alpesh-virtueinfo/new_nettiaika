@@ -33,6 +33,7 @@ en:
   language_name: 'Language Name'
   activate: 'Activate'
   general:
+    company_languages: "Company Languages"
     company_admin: "Company Admins"
     admin_setup: "Admin Setup"
     welcome_user: "Welcome %{username}"
