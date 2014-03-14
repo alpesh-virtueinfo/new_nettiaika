@@ -4,6 +4,12 @@ class Admin::CompaniesController < ApplicationController
   
   # GET /companise list action
   def index
+    session[:search_params] = params[:company] ? params[:company] : nil
+    session[:set_pager_number] = params[:set_pager_number] if params[:set_pager_number]
+
+    if session[:set_pager_number].nil?
+      session[:set_pager_number] = PER_PAGE
+    end
     @companies = Company.all.
         search(session[:search_params]).
         order(sort_column + " " + sort_direction).

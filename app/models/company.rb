@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :company_admins
+  has_one :payment_type 
   validates :name, :business_id, :url, :contact_person, :contact_email, :presence => true
   validates :name, uniqueness: true
   validates :url, uniqueness: true

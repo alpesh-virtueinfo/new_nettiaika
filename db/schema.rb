@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20140312140130) do
     t.datetime "updated_at"
   end
 
+  create_table "company_languages", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "language_id"
+    t.boolean  "activate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contacts", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -144,11 +152,12 @@ ActiveRecord::Schema.define(version: 20140312140130) do
   end
 
   create_table "payment_types", force: true do |t|
+    t.integer  "company_id"
     t.string   "payment_method"
     t.string   "payment_class"
     t.string   "payment_receiver"
     t.string   "client_number"
-    t.boolean  "exact_charge"
+    t.boolean  "exact_charge",               default: false
     t.boolean  "is_case"
     t.integer  "sort_order"
     t.string   "status",           limit: 1

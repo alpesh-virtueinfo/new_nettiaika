@@ -1,9 +1,10 @@
 NewNettiaika::Application.routes.draw do
+  
   #faye_server '/faye', timeout: 25
   #get '/chat', to: RealtimeChatController
 
   namespace :admin do
-    resources :users, :settings, :footer_pages, :contacts, :languages, :email_templates, :companies
+    resources :users, :settings, :footer_pages, :contacts, :languages, :email_templates, :companies, :payment_types
   end
 
   resources :user_sessions
