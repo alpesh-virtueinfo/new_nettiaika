@@ -3,10 +3,10 @@
   <h4><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h4>
 </div>
 
-<% if @payment_type.errors.any? %>
+<% if @company.errors.any? %>
   <div id="errorExplanation">
     <ul>
-    <% @payment_type.errors.full_messages.each do |msg| %>
+    <% @company.errors.full_messages.each do |msg| %>
       <li><span class="text-error text-message"><%= msg %></span></li>
     <% end %>
     </ul>

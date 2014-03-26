@@ -2,4 +2,15 @@
 <div class="page-header">
   <h4><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h4>
 </div>
+
+<% if @company_admin.errors.any? %>
+  <div id="errorExplanation">
+    <ul>
+    <% @company_admin.errors.full_messages.each do |msg| %>
+      <li><span class="text-error text-message"><%= msg %></span></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  
 <%= render :partial => 'form' %>

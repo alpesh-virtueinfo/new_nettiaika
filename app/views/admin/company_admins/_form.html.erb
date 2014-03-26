@@ -1,21 +1,21 @@
 <%= form_for ["admin", @company_admin], :html => { :class => 'form-horizontal' } do |f| %>
 
     <div class="control-group">
-      <%= f.label :name, :class => 'control-label' %>
+      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= collection_select :company_admin, :company_id, @companies, :id, :name, {:include_blank => "Please select"}, {class: "input-xlarge"} %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :username, :class => 'control-label' %>
+      <%= f.label :username, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.text_field :username, :class => 'input-xlarge' %>
       </div>
     </div>
     
     <div class="control-group">
-      <%= f.label :first_name, :class => 'control-label' %>
+      <%= f.label :first_name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.text_field :first_name, :class => 'input-xlarge' %>
       </div>
@@ -29,7 +29,7 @@
     </div>
     
     <div class="control-group">
-      <%= f.label :email, :class => 'control-label' %>
+      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.text_field :email, :class => 'input-xlarge' %>
       </div>
@@ -39,9 +39,6 @@
       <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.password_field :password, :class => 'input-xlarge' %>
-        <% if @company_admin.errors[:password].any? %>
-            <span class="text-error text-message"><%= @company_admin.errors[:password].first %></span>
-        <% end %>
       </div>
     </div>
 
@@ -49,9 +46,6 @@
       <%= f.label :password_confirmation, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.password_field :password_confirmation, :class => 'input-xlarge' %>
-        <% if @company_admin.errors[:password_confirmation].any? %>
-            <span class="text-error text-message"><%= @company_admin.errors[:password_confirmation].first %></span>
-        <% end %>
       </div>
     </div>
 
@@ -78,6 +72,7 @@
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', admin_company_admins_path, :class => 'btn' %>
     </div>
 
 <% end %>

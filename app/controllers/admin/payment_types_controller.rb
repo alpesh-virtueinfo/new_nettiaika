@@ -40,6 +40,7 @@ class Admin::PaymentTypesController < ApplicationController
 
   # GET /payment_types/1/edit
   def edit
+    @p_status = @payment_type ? true : false
   end
   
   # PATCH/PUT /payment_types/1
